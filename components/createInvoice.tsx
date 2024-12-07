@@ -49,6 +49,10 @@ export function CreateInvoice(){
             <CardContent className="p-6">
                 <form id={form.id} action={action} onSubmit={form.onSubmit} noValidate>
                     <input type="hidden" name={fields.date.name} value={selectedDate.toISOString()}/>
+                    <input type="hidden" 
+                        name={fields.total.name} 
+                        value={calTotal}
+                    />
                 <div className="flex flex-col gap-1 w-fit mb-6">
                     <div className="flex items-center gap-4">
                         <Badge className="" variant="secondary">Draft</Badge>
