@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+"use server"
+
 import { parseWithZod } from "@conform-to/zod";
 import requireUser from "../utils/hooks/requireUserHook";
 import { invoiceSchema } from "../utils/zodSchemas";
