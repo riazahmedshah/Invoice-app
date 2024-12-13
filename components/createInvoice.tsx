@@ -21,7 +21,15 @@ import { parseWithZod } from "@conform-to/zod";
 import { invoiceSchema } from "@/app/utils/zodSchemas";
 import { useformatCurrency } from "@/app/utils/hooks/useformatCurrency";
 
-export function CreateInvoice(){
+
+interface iAppProps {
+    firstName: string;
+    lastName: string;
+    email: string;
+    address: string;
+}
+
+export function CreateInvoice({address, email, firstName, lastName} : iAppProps){
     const [lastResult, action] = useActionState(cretaeInvoice, undefined)
     const [form, fields] = useForm({
         lastResult,
@@ -43,6 +51,8 @@ export function CreateInvoice(){
     const [currency, setCurrency] = useState("INR")
 
     const calTotal = (Number(quantity) || 0) * (Number(rate) || 0);
+
+    
 
     return(
         <Card className="w-full max-w-4xl mx-auto">
@@ -106,19 +116,19 @@ export function CreateInvoice(){
                             <Input 
                                 name={fields.fromName.name} 
                                 key={fields.fromName.key}
-                                defaultValue={fields.fromName.initialValue}
+                                defaultValue={firstName + " " + lastName}
                                 placeholder="Your Name"/>
                                 <p className="text-sm text-red-500">{fields.fromName.errors}</p>
                             <Input 
                                 name={fields.fromEmail.name} 
                                 key={fields.fromEmail.key}
-                                defaultValue={fields.fromEmail.initialValue}
+                                defaultValue={email}
                                 placeholder="Your Email"/>
                                 <p className="text-sm text-red-500">{fields.fromEmail.errors}</p>
                             <Input 
                                 name={fields.fromAddress.name} 
                                 key={fields.fromAddress.key}
-                                defaultValue={fields.fromAddress.initialValue}
+                                defaultValue={address}
                                 placeholder="Your Address"/>
                                 <p className="text-sm text-red-500">{fields.fromAddress.errors}</p>
                         </div>
