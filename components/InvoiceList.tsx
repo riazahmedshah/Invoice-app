@@ -62,7 +62,7 @@ export async function InvoiceList(){
                                 dateStyle:"medium"
                             }).format(invoice.createdAt)}</TableCell>
                             <TableCell className="text-right">
-                                <InvoiceAction />
+                                <InvoiceAction id={invoice.id} />
                             </TableCell>
                         </TableRow>
                     ))

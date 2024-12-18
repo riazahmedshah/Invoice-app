@@ -3,7 +3,11 @@ import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import Link from "next/link";
 
-export function InvoiceAction(){
+interface iAppProps{
+    id: string;
+}
+
+export function InvoiceAction({id} : iAppProps){
     return(
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -13,7 +17,7 @@ export function InvoiceAction(){
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
-                    <Link href="#">
+                    <Link href={`/dashboard/invoices/${id}`}>
                         <Pencil className="size-4 mr-2"/>Edit Invoice
                     </Link>
                 </DropdownMenuItem>
