@@ -1,5 +1,7 @@
+
 import prisma from "@/app/utils/db"
 import requireUser from "@/app/utils/hooks/requireUserHook";
+import { EditInvoice } from "@/components/EditInvoice";
 import { notFound } from "next/navigation";
 
 async function getData(invoiceId: string, userId: string){
@@ -27,9 +29,9 @@ export default async function EditInvoiceRoute({params}: {params:ParamsType}){
     const session = await requireUser();
 
     const data = await getData(invoiceId, session.user?.id as string);
-    console.log(data);
+    // console.log(data);
 
     return(
-        <h1>Hello from Edit your invoice here</h1>
+        <EditInvoice data={data}/>
     )
 }
