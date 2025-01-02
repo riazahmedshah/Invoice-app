@@ -1,22 +1,19 @@
 
 
+import { DashboardBlocks } from "@/components/DashboardBlocks";
 import requireUser from "../utils/hooks/requireUserHook";
+import { Invoicegraph } from "@/components/InvoiceGraph";
 
 export default async function Dashboard() {
     
     await requireUser();
     return (
-        <div>
-            <h1>Hello from Dashboard</h1>
-            {/* <form
-                action={async () => {
-                    "use server"
-                    await signOut()
-                }}
-            >
-                <button type="submit">Sign Out</button>
-            </form> */}
-
-        </div>
+        <>
+            <DashboardBlocks/>
+            <div className="grid gap-4 lg:grid-cols-3 md:gap-8">
+                <Invoicegraph/>
+                <h1 className="bg-green-500 col-span-1">this is about 30%</h1>
+            </div>
+        </>
     )
 }
