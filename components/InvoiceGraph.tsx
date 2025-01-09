@@ -36,8 +36,21 @@ async function getInvoices(userId:string){
         return acc;
     },{});
 
+    // convert to array and form the object
+    const transformData = Object.entries(aggregateData).map(([date,amount]) => ({
+        date,
+        amount,
+        originalDate : new Date(date + ", " + new Date().getFullYear()),
+
+    })).sort((a,b) => a.originalDate.getTime() - b.originalDate.getTime())
+    .map(({date,amount}) => ({
+        date,
+        amount,
+    }));
+    
     return aggregateData;
-}
+};
+
 
 
 export async function Invoicegraph() {
