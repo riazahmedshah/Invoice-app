@@ -37,18 +37,21 @@ async function getInvoices(userId:string){
     },{});
 
     // convert to array and form the object
-    const transformData = Object.entries(aggregateData).map(([date,amount]) => ({
+    const transformData = Object.entries(aggregateData)
+    .map(([date, amount]) => (
+        {
         date,
         amount,
         originalDate : new Date(date + ", " + new Date().getFullYear()),
-
-    })).sort((a,b) => a.originalDate.getTime() - b.originalDate.getTime())
+        })
+    )
+    .sort((a,b) => a.originalDate.getTime() - b.originalDate.getTime())
     .map(({date,amount}) => ({
         date,
         amount,
     }));
     
-    return aggregateData;
+    return transformData;
 };
 
 
@@ -56,7 +59,7 @@ async function getInvoices(userId:string){
 export async function Invoicegraph() {
     const session = await requireUser();
     const data = await getInvoices(session.user?.id as string);
-    console.log(data);
+    //console.log(data);
     return(
         <Card className="col-span-2">
             <CardHeader>
@@ -66,7 +69,7 @@ export async function Invoicegraph() {
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <Graph/>
+                <Graph data={data}/>
             </CardContent>
         </Card>
     )

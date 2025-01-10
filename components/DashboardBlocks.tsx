@@ -2,6 +2,7 @@ import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import prisma from "@/app/utils/db";
 import requireUser from "@/app/utils/hooks/requireUserHook";
+import { useformatCurrency } from "@/app/utils/hooks/useformatCurrency";
 
 
 async function getData(userId:string){
@@ -55,9 +56,12 @@ export async function DashboardBlocks(){
                 </CardHeader>
                 <CardContent>
                     <h2 className="text-2xl font-bold">
-                        {data.reduce((acc,invoice) => acc + invoice.total,0)}.Rs
+                        {useformatCurrency({
+                            amount:data.reduce((acc,invoice) => acc + invoice.total,0),
+                            currency:"INR"
+                        })}
                     </h2>
-                    <p className="text-sm text-muted-foreground">Based on the last 30 days</p>
+                    <p className="text-sm text-muted-foreground">Based on total volume</p>
                 </CardContent>
             </Card>
             {/* seconr card */}
@@ -89,14 +93,14 @@ export async function DashboardBlocks(){
             {/* fourth card */}
             <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Open Invoices</CardTitle>
+                    <CardTitle className="text-sm font-medium">Pending Invoices</CardTitle>
                     <Activity className="size-4 text-muted-foreground"/>
                 </CardHeader>
                 <CardContent>
                     <h2 className="text-2xl font-bold">
                         +{openInvoices.length}
                     </h2>
-                    <p className="text-sm text-muted-foreground">TInvoices which have not been paid!</p>
+                    <p className="text-sm text-muted-foreground">Invoices which are pending currently!</p>
                 </CardContent>
             </Card>
 

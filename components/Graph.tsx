@@ -4,27 +4,34 @@ import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
 
 
-const data = [
-    {
-        date: "nov 5",
-        amount:"300"
-    },
-    {
-        date: "nov 7",
-        amount:"100"
-    },
-    {
-        date: "nov 7",
-        amount:"400"
-    },
-    {
-        date: "nov 7",
-        amount:"300"
-    },
+// const data = [
+//     {
+//         date: "nov 5",
+//         amount:"300"
+//     },
+//     {
+//         date: "nov 7",
+//         amount:"100"
+//     },
+//     {
+//         date: "nov 7",
+//         amount:"400"
+//     },
+//     {
+//         date: "nov 7",
+//         amount:"300"
+//     },
     
-]
+// ]
 
-export function Graph(){
+interface iAppProps {
+    data:{
+        date:string;
+        amount:number;
+    }[]
+}
+
+export function Graph({data}: iAppProps){
     return(
         <ChartContainer config={{
             amount:{

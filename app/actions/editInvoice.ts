@@ -27,7 +27,7 @@ export async function editInvoice(prevState: any,formData: FormData){
         },
         data:{
             clientAddress: submission.value.clientAddress,
-            clientEmail: submission.value.clientAddress,
+            clientEmail: submission.value.clientEmail,
             clientName:submission.value.clientName,
             currency: submission.value.currency,
             date: submission.value.date,

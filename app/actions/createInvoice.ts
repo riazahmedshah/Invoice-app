@@ -24,7 +24,7 @@ export async function cretaeInvoice(prevState:any,formData: FormData){
     const data = await prisma.invoice.create({
         data: {
             clientAddress: submission.value.clientAddress,
-            clientEmail: submission.value.clientAddress,
+            clientEmail: submission.value.clientEmail,
             clientName:submission.value.clientName,
             currency: submission.value.currency,
             date: submission.value.date,
